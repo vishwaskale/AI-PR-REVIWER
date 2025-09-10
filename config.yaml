@@ -1,0 +1,114 @@
+review_rules:
+  java:
+    enabled: true
+    checks:
+      - code_quality
+      - security_vulnerabilities
+      - performance_issues
+      - design_patterns
+      - exception_handling
+      - thread_safety
+      - memory_management
+      - spring_boot_best_practices
+      - microservices_patterns
+    severity_levels:
+      - critical
+      - major
+      - minor
+      - suggestion
+    
+  sql:
+    enabled: true
+    checks:
+      - query_performance
+      - sql_injection_prevention
+      - index_usage
+      - join_optimization
+      - data_type_usage
+      - transaction_handling
+      - stored_procedure_quality
+    databases:
+      - postgresql
+      - mysql
+      - oracle
+      - sql_server
+    
+  microservices:
+    enabled: true
+    checks:
+      - service_boundaries
+      - api_design
+      - data_consistency
+      - circuit_breaker_patterns
+      - retry_mechanisms
+      - timeout_handling
+      - service_discovery
+      - configuration_management
+      - monitoring_observability
+      - security_patterns
+    
+  resiliency:
+    enabled: true
+    patterns:
+      - circuit_breaker
+      - retry_with_backoff
+      - bulkhead
+      - timeout
+      - rate_limiting
+      - graceful_degradation
+      - health_checks
+      - chaos_engineering
+    
+  general:
+    enabled: true
+    checks:
+      - code_style
+      - documentation
+      - test_coverage
+      - dependency_management
+      - configuration_security
+      - logging_practices
+
+comment_templates:
+  java:
+    security: "🔒 **Security Issue**: {issue_description}\n\n**Recommendation**: {recommendation}\n\n**Severity**: {severity}"
+    performance: "⚡ **Performance Concern**: {issue_description}\n\n**Impact**: {impact}\n\n**Suggestion**: {suggestion}"
+    design: "🏗️ **Design Pattern**: {issue_description}\n\n**Better Approach**: {better_approach}"
+    
+  sql:
+    performance: "🐌 **SQL Performance**: {issue_description}\n\n**Query Optimization**: {optimization}\n\n**Expected Improvement**: {improvement}"
+    security: "🛡️ **SQL Security**: {issue_description}\n\n**Risk**: {risk}\n\n**Fix**: {fix}"
+    
+  microservices:
+    pattern: "🔧 **Microservices Pattern**: {issue_description}\n\n**Pattern Suggestion**: {pattern}\n\n**Benefits**: {benefits}"
+    resilience: "🛡️ **Resilience Pattern**: {issue_description}\n\n**Pattern**: {pattern}\n\n**Implementation**: {implementation}"
+
+approval_criteria:
+  auto_approve:
+    conditions:
+      - no_critical_issues: true
+      - no_major_security_issues: true
+      - test_coverage_maintained: true
+      - documentation_updated: true
+      - confidence_score: ">= 0.9"
+      
+  auto_reject:
+    conditions:
+      - critical_security_vulnerabilities: true
+      - major_performance_regressions: true
+      - breaking_api_changes_without_versioning: true
+      - confidence_score: "<= 0.3"
+
+notification_settings:
+  slack:
+    enabled: false
+    webhook_url: ""
+    channels:
+      - "#code-review"
+      - "#security-alerts"
+      
+  email:
+    enabled: false
+    smtp_server: ""
+    recipients:
+      - "team-lead@company.com"
